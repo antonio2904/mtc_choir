@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.YoutubeFragment">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_mp3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_upload_mp3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_upload" />
+
+    <TextView
+        android:id="@+id/text_mp3_no_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Internet Connection"
+        android:textColor="#ffffff"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/text_mp3_no_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Items"
+        android:textColor="#ffffff"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/progress_mp3"/>
+
+</RelativeLayout>

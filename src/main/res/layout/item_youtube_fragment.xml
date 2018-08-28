@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:background="@drawable/shape_rounded_rectangle">
+
+    <TextView
+        android:id="@+id/text_song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="abcd"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="-5dp"
+        android:padding="5dp"
+        android:textColor="#039BE5"
+        android:layout_below="@+id/text_song_name"
+        android:text="Link" />
+
+    <TextView
+        android:id="@+id/text_added_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_link"
+        android:layout_marginTop="8dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:id="@+id/image_delete"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

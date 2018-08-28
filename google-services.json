@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "786212607826",
+    "firebase_url": "https://mtcchoir-73849.firebaseio.com",
+    "project_id": "mtcchoir-73849",
+    "storage_bucket": "mtcchoir-73849.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786212607826:android:fd949de380893e2e",
+        "android_client_info": {
+          "package_name": "anonymous.com.mtcchoir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786212607826-4an6a7kbkqjk48h9ap20lk2ocrsdmeei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "anonymous.com.mtcchoir",
+            "certificate_hash": "d0db7506ec6e1a845f9f1e71d4e80f2dde1a305a"
+          }
+        },
+        {
+          "client_id": "786212607826-t6sibtp1df9t3r8n3kf3p0gu4ahpe30t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA2P8fkMd3p_znrXu1TC8f6gMgIz0eaLo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786212607826-t6sibtp1df9t3r8n3kf3p0gu4ahpe30t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
