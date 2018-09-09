@@ -41,7 +41,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,7 +123,6 @@ public class HomeActivity extends AppCompatActivity implements MP3Fragment.Mp3Fr
     @Override
     public void onRefresh() {
 
-//        Toast.makeText(this, "Page Refreshed", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -374,7 +372,7 @@ public class HomeActivity extends AppCompatActivity implements MP3Fragment.Mp3Fr
         int bufferSize = 1024;
         byte[] buffer = new byte[bufferSize];
 
-        int len = 0;
+        int len;
         while ((len = inputStream.read(buffer)) != -1) {
             byteBuffer.write(buffer, 0, len);
         }
@@ -444,13 +442,12 @@ public class HomeActivity extends AppCompatActivity implements MP3Fragment.Mp3Fr
                         final String name = name_et.getText().toString();
                         if (!name.equals("")) {
 
-                            final Uri audioFileUri = data;
                             // Now you can use that Uri to get the file path, or upload it, ...
                             FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
                             final StorageReference myRef = firebaseStorage.getReference("Mp3/" + name);
 
                             try {
-                                InputStream iStream = getContentResolver().openInputStream(audioFileUri);
+                                InputStream iStream = getContentResolver().openInputStream(data);
                                 byte[] inputData = getBytes(iStream);
 
 
@@ -466,7 +463,7 @@ public class HomeActivity extends AppCompatActivity implements MP3Fragment.Mp3Fr
                                         mp3Item.setmSongName(name);
                                         mp3ItemMap.put(name, mp3Item);
                                         databaseReference.child(name).setValue(mp3ItemMap);
-                                        File file = new File(audioFileUri.getPath());//create path from uri
+                                        File file = new File(data.getPath());//create path from uri
                                         final String[] split = file.getPath().split(":");//split the path.
                                         String filePath;
                                         if (split.length > 1)
@@ -505,7 +502,7 @@ public class HomeActivity extends AppCompatActivity implements MP3Fragment.Mp3Fr
                                     }
                                 });
 
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                     }

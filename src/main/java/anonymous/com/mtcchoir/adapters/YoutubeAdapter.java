@@ -1,6 +1,7 @@
 package anonymous.com.mtcchoir.adapters;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ public class YoutubeAdapter extends  RecyclerView.Adapter<YoutubeAdapter.MyViewH
     /**
      * View holder class
      * */
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mLink;
         private TextView mSongName;
@@ -30,7 +31,7 @@ public class YoutubeAdapter extends  RecyclerView.Adapter<YoutubeAdapter.MyViewH
         private ImageView mDeleteImageView;
 
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
             mLink = view.findViewById(R.id.text_link);
             mSongName = view.findViewById(R.id.text_song_name);
@@ -46,7 +47,7 @@ public class YoutubeAdapter extends  RecyclerView.Adapter<YoutubeAdapter.MyViewH
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         holder.mLink.setText(itemList.get(position).getmLink());
         holder.mSongName.setText(String.valueOf(position+1)+". "+itemList.get(position).getmSongName());
@@ -71,8 +72,9 @@ public class YoutubeAdapter extends  RecyclerView.Adapter<YoutubeAdapter.MyViewH
         return itemList.size();
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_youtube_fragment,parent, false);
         return new MyViewHolder(v);

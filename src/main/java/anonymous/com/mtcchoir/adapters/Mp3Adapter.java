@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 import anonymous.com.mtcchoir.R;
 import anonymous.com.mtcchoir.Utils.AppController;
@@ -47,17 +48,17 @@ public class Mp3Adapter extends RecyclerView.Adapter<Mp3Adapter.MyViewHolder> {
      */
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mSongName;
-        public TextView mAddedUser;
+        TextView mSongName;
+        TextView mAddedUser;
         public ImageView mPlayImageView;
         public SeekBar mSeekBar;
         public TextView mSongStart;
         public TextView mSongEnd;
-        public ImageView mDeleteImageView;
+        ImageView mDeleteImageView;
         public ImageView mShareImageView;
 
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
             mSongName = view.findViewById(R.id.text_song_name_mp3);
             mPlayImageView = view.findViewById(R.id.image_play);
@@ -109,7 +110,7 @@ public class Mp3Adapter extends RecyclerView.Adapter<Mp3Adapter.MyViewHolder> {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                        if (fromUser) {
+                        if (fromUser  && position == AppController.nowPlayingPosition) {
                             mp3AdapterInteractionListener.onSeek(progress, seekBar);
                         }
                     }
@@ -127,10 +128,10 @@ public class Mp3Adapter extends RecyclerView.Adapter<Mp3Adapter.MyViewHolder> {
 
                 if (!AppController.isPlaying || position == AppController.nowPlayingPosition) {
 
-                    if (holder.mPlayImageView.getDrawable().getConstantState().equals(mContext.getResources().getDrawable(R.drawable.ic_play).getConstantState())) {
+                    if (Objects.equals(holder.mPlayImageView.getDrawable().getConstantState(), mContext.getResources().getDrawable(R.drawable.ic_play).getConstantState())) {
                         holder.mPlayImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_pause));
                         mp3AdapterInteractionListener.onPlay(holder,position, itemList.get(position).getmSongName());
-                    } else if (holder.mPlayImageView.getDrawable().getConstantState().equals(mContext.getResources().getDrawable(R.drawable.ic_pause).getConstantState())) {
+                    } else if (Objects.equals(holder.mPlayImageView.getDrawable().getConstantState(), mContext.getResources().getDrawable(R.drawable.ic_pause).getConstantState())) {
                         holder.mPlayImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_play));
                         mp3AdapterInteractionListener.onPauseClicked();
                     } else {
@@ -229,8 +230,9 @@ public class Mp3Adapter extends RecyclerView.Adapter<Mp3Adapter.MyViewHolder> {
         return itemList.size();
     }
 
+    @NonNull
     @Override
-    public Mp3Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Mp3Adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_mp3_fragment, parent, false);
 

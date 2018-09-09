@@ -140,7 +140,7 @@ public class YoutubeFragment extends Fragment {
                     youtubeItems.clear();
                     for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                         for (DataSnapshot dsp1 : dsp.getChildren()) {
-                            Log.d("Youtube", dsp1.getValue().toString());
+                            Log.d("Youtube", Objects.requireNonNull(dsp1.getValue()).toString());
                             youtubeItems.add(dsp1.getValue(YoutubeItem.class));
                         }
                     }

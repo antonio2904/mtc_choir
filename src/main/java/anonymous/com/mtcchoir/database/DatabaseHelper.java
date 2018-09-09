@@ -14,14 +14,12 @@ import anonymous.com.mtcchoir.models.Mp3Item;
 public class DatabaseHelper extends SQLiteOpenHelper{
 
 
-    public static final String DATABASE_NAME = "Choir.db";
-    public static final String TABLE_NAME = "mp3_table";
-    public static final String COL_1 = "ID";
-    public static final String COL_2 = "SONG_NAME";
-    public static final String COL_3 = "ADDED_USER";
-    public static final String COL_4 = "IS_DOWNLOADED";
-    public static final String COL_5 = "PATH";
-    public static final String COL_6 = "IS_LOCAL";
+    private static final String DATABASE_NAME = "Choir.db";
+    private static final String TABLE_NAME = "mp3_table";
+    private static final String COL_2 = "SONG_NAME";
+    private static final String COL_3 = "ADDED_USER";
+    private static final String COL_4 = "IS_DOWNLOADED";
+    private static final String COL_5 = "PATH";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -40,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public void insertData(String name,String addeduser,int is_downloaded,String path) {
 
-        List<Mp3Item> mp3Items = new ArrayList<>();
+        List<Mp3Item> mp3Items;
         mp3Items = getAllData();
         boolean isAvailable = false;
         for(Mp3Item mp3Item : mp3Items){
@@ -74,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             mp3Items.add(mp3Item);
             res.moveToNext();
         }
+        res.close();
         db.close();
         return mp3Items;
     }
@@ -83,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor res = db.rawQuery("select PATH from "+TABLE_NAME+" where SONG_NAME = ?",new String [] {songName});
         res.moveToFirst();
         String path = res.getString(0);
+        res.close();
         db.close();
         return path;
     }
@@ -92,25 +92,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor res = db.rawQuery("select IS_DOWNLOADED from "+TABLE_NAME+" where SONG_NAME = ?",new String [] { name});
         res.moveToFirst();
         int is_downloaded = res.getInt(0);
+        res.close();
+        db.close();
         return is_downloaded;
     }
 
 
-    public boolean updateData(String name,int is_downloaded) {
+    public void updateData(String name,int is_downloaded) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,name);
         contentValues.put(COL_4,is_downloaded);
         db.update(TABLE_NAME, contentValues, "SONG_NAME = ?",new String[] { name });
-        db.close();
-        return true;
-    }
-
-    public void updatePath(String songName,String path){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_5,path);
-        db.update(TABLE_NAME, contentValues, "SONG_NAME = ?",new String[] { songName });
         db.close();
     }
 
